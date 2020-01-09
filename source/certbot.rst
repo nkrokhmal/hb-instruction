@@ -106,6 +106,7 @@ to master node to directory ``/home/heeadbookadmin/source/hb-infrastructure/Cert
 Add secret name to ``/home/heedbookadmin/source/hb-infrastructure/Nginx/nginx-ingress.yaml`` file
 
 .. code:: console
+
         spec:
           tls:
           - hosts:
@@ -115,5 +116,6 @@ Add secret name to ``/home/heedbookadmin/source/hb-infrastructure/Nginx/nginx-in
 and run command
 
 .. code:: console
+
         kubectl apply -f nginx-ingress.yaml
 
