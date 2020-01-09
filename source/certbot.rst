@@ -6,7 +6,7 @@ Certificates expiration in cluster
 
 If certificate is expired for DNS name (for example `heedbookslave.northeurope.cloudapp.azure.com`)
         
-#. Copy DNS name ('heedbookslave.northeurope.cloudapp.azure.com'). 
+#. Copy DNS name (`heedbookslave.northeurope.cloudapp.azure.com`). 
 #. Rename DNS name to any another (for example `heedbookslave2.northeurope.cloudapp.azure.com`).
 #. Create new VM outside the cluster (let's call it `dns-vm`).
 #. For new VM `dns-vm` create new DNS name equals copied DNS name (`heedbookslave.northeurope.cloudapp.azure.com`).
@@ -47,7 +47,7 @@ Copy files
 - ``/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem``
 - ``/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem``
 
-to master node to directory ``/home/heeadbookadmin/source/hb-infrastructure/Certificates`` and rename it using format ``filename_YYYYmmDD.pem``. 
+to master node to directory ``/home/heeadbookadmin/source/hb-infrastructure/Certificates`` and rename it using format ``filename_YYYYmmDD.pem`` and delete your VM `dns-vm`.
 
 Run following command in VM master node
 
@@ -58,4 +58,62 @@ Run following command in VM master node
 
 Certificates creation in cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Create for your VM DNS name (`heedbookslave.northeurope.cloudapp.azure.com`).
+#. Run the following commands in new virtual machine `dns-vm`.
+
+.. code:: console
+
+        $ sudo apt update
+        $ sudo apt install certbot
+        $ sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
+
+When running the command, you will be prompted to enter an email address and agree to the terms of service. After doing so, you should see a message telling you the process was successful and where your certificates are stored:
+
+.. code:: console
+       
+        Output
+        IMPORTANT NOTES:
+        - Congratulations! Your certificate and chain have been saved at:
+        /etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem
+        Your key file has been saved at:
+        /etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem
+        Your cert will expire on 2018-10-09. To obtain a new or tweaked
+        version of this certificate in the future, simply run certbot
+        again. To non-interactively renew *all* of your certificates, run
+        "certbot renew"
+        - Your account credentials have been saved in your Certbot
+        configuration directory at /etc/letsencrypt. You should make a
+        secure backup of this folder now. This configuration directory will
+        also contain certificates and private keys obtained by Certbot so
+        making regular backups of this folder is ideal.
+        - If you like Certbot, please consider supporting our work by:
+
+        Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+        Donating to EFF:                    https://eff.org/donate-le
+
+Copy files
+
+- ``/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem``
+- ``/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem``
+
+to master node to directory ``/home/heeadbookadmin/source/hb-infrastructure/Certificates`` and rename it using format ``filename_YYYYmmDD.pem``. Run following commands in master node
+
+.. code:: console
+        
+        sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
+
+Add secret name to ``/home/heedbookadmin/source/hb-infrastructure/Nginx/nginx-ingress.yaml`` file
+
+.. code:: console
+        spec:
+          tls:
+          - hosts:
+            - heedbookslave.northeurope.cloudapp.azure.com
+            secretName: tls-secret
+
+and run command
+
+.. code:: console
+        kubectl apply -f nginx-ingress.yaml
 
