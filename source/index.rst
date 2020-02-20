@@ -26,7 +26,7 @@ Apache2
    apache2
 
 Copy Ftp Instructions
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
