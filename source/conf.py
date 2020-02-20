@@ -194,7 +194,7 @@ latex_documents = [
      u'Read the Docs, Inc \\& contributors', 'manual'),
 ]
 
-
+latex_engine = 'xelatex'
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
