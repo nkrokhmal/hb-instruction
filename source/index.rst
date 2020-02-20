@@ -1,14 +1,5 @@
 Heedbook OnPrem documentation
 =============================
-
-
-Another simple header
-=====================
-
-Here is text explaining some very complicated stuff.::
-
-        print 'hello'
-        >> hello
         
 Heedbook OnPrem Cluster Deployment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -26,7 +17,15 @@ Certbot
 
    certbot
 
-Ftp Instructions
+Apache2
+^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   
+   apache2
+
+Copy Ftp Instructions
 ^^^^^^^^^^^^^^^^
 
 .. toctree::
