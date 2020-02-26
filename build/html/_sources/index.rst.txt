@@ -33,6 +33,14 @@ Copy Ftp Instructions
 
    copyoneftpfilestoanotherwithtimefilter
 
+Research
+^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   howusequartzscheduler
+
 Guide
 ^^^^^
 
