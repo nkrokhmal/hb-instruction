@@ -41,6 +41,14 @@ Research
 
    howusequartzscheduler
 
+Extend disc value
+^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   adddisktoazurevm
+
 Guide
 ^^^^^
 
