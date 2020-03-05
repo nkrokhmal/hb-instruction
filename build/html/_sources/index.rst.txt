@@ -33,6 +33,14 @@ Copy Ftp Instructions
 
    copyoneftpfilestoanotherwithtimefilter
 
+Create Ftp User
+^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   ftpuser
+
 Research
 ^^^^^^^^
 

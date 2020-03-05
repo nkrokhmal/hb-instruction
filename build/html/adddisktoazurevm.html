@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="How use Quartz Scheduler" href="howusequartzscheduler.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,6 +94,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Расширение дискового пространства на Виртуальной машине</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -165,102 +170,108 @@
   <div class="section" id="id1">
 <h1>Расширение дискового пространства на Виртуальной машине<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <ul>
-<li><p>Заходим в настройки виртуальной машины у которой хотим расширить дисковое пространство.</p></li>
-<li><p>Заходим в настройки дисков виртуальной машины в левом меню:</p>
+<li><p class="first">Заходим в настройки виртуальной машины у которой хотим расширить дисковое пространство.</p>
+</li>
+<li><p class="first">Заходим в настройки дисков виртуальной машины в левом меню:</p>
 <blockquote>
 <div><p>Settings -&gt; Disks</p>
 </div></blockquote>
 </li>
-<li><p>Нажимаем на кнопку: + Add data disk</p></li>
-<li><p>В столбце Name таблицы с дисками открываем раскрывающийся список в котором выбираем: Create disk.</p></li>
-<li><p>В открывшемся окне Create managed disk пишем название нового диска, тип диска и размер. Нажимаем кнопку Create.</p></li>
-<li><p>Используя терминал заходим на расширяемую виртуальную машину через ssh.</p></li>
-<li><p>выполнив следующую команду получим список дисков подключенных к виртуальной машине:</p></li>
+<li><p class="first">Нажимаем на кнопку: + Add data disk</p>
+</li>
+<li><p class="first">В столбце Name таблицы с дисками открываем раскрывающийся список в котором выбираем: Create disk.</p>
+</li>
+<li><p class="first">В открывшемся окне Create managed disk пишем название нового диска, тип диска и размер. Нажимаем кнопку Create.</p>
+</li>
+<li><p class="first">Используя терминал заходим на расширяемую виртуальную машину через ssh.</p>
+</li>
+<li><p class="first">выполнив следующую команду получим список дисков подключенных к виртуальной машине:</p>
+</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo fdisk -l
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo fdisk -l
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>из списка дисков найдем вновь добавленный(диск будет не “Партиционирован”). Скопируем путь к физическому диску (например: /dev/sdc).</p></li>
-<li><p>выполним следующую команду создадим раздел. Использование комнады gdisk позволяет добавлять диски с размером более 2ТБ.</p></li>
+<li>из списка дисков найдем вновь добавленный(диск будет не “Партиционирован”). Скопируем путь к физическому диску (например: /dev/sdc).</li>
+<li>выполним следующую команду создадим раздел. Использование комнады gdisk позволяет добавлять диски с размером более 2ТБ.</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo gdisk /dev/sdc
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo gdisk /dev/sdc
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Консоль постребует ввода команды, введите: n</p></li>
+<li>Консоль постребует ввода команды, введите: n</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Command (m for help): n</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">):</span> <span class="n">n</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Консоль попросит ввести номер раздела, введите число от 1 до 4: 1</p></li>
+<li>Консоль попросит ввести номер раздела, введите число от 1 до 4: 1</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Partition number (1-4, default 1): 1</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Partition</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">default</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>После того как в консоли будет написано, что создан раздел, введите: w</p></li>
+<li>После того как в консоли будет написано, что создан раздел, введите: w</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Command (m for help): w</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="p">(</span><span class="n">m</span> <span class="k">for</span> <span class="n">help</span><span class="p">):</span> <span class="n">w</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Далее консоль потребует ввести: y</p></li>
+<li>Далее консоль потребует ввести: y</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING</span>
-<span class="go">PARTITIONS!!</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
 
-<span class="go">Do you want to proceed? (Y/N): y</span>
+Do you want to proceed? (Y/N): y
 </pre></div>
 </div>
 <p><strong>- Выполним форматирование добавленного раздела диска, для этого выполним команду:</strong></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo mkfs.ext4 /dev/sdc1</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkfs</span><span class="o">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdc1</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>После форматирования раздела необходимо подключить раздел, для этого нам нужно добавить раздел в список добавленных разделов, для этого выполним следующую команду:</p></li>
+<li>После форматирования раздела необходимо подключить раздел, для этого нам нужно добавить раздел в список добавленных разделов, для этого выполним следующую команду:</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo vim /etc/fstab</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
 </pre></div>
 </div>
 <p>откроется конфигурация, добавим еще одну строку и заполним ее:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> CLOUD_IMG: This file was created/modified by the Cloud Image build process
-<span class="go">UUID=3756934c-31d3-413c-8df9-5b7c7b1a4451       /        ext4   defaults,discard        0 0</span>
-<span class="go">UUID=B38E-A2BF  /boot/efi       vfat    defaults,discard        0 0</span>
-<span class="go">/dev/disk/cloud/azure_resource-part1    /mnt    auto    defaults,nofail,x-systemd.requires=cloud-init.service,comment=cloudconfig       0       2</span>
-<span class="go">/dev/sdc1      /home/nkrokhmal/storage         auto    defaults                0       0</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># CLOUD_IMG: This file was created/modified by the Cloud Image build process</span>
+<span class="n">UUID</span><span class="o">=</span><span class="mi">3756934</span><span class="n">c</span><span class="o">-</span><span class="mi">31</span><span class="n">d3</span><span class="o">-</span><span class="mi">413</span><span class="n">c</span><span class="o">-</span><span class="mi">8</span><span class="n">df9</span><span class="o">-</span><span class="mi">5</span><span class="n">b7c7b1a4451</span>       <span class="o">/</span>        <span class="n">ext4</span>   <span class="n">defaults</span><span class="p">,</span><span class="n">discard</span>        <span class="mi">0</span> <span class="mi">0</span>
+<span class="n">UUID</span><span class="o">=</span><span class="n">B38E</span><span class="o">-</span><span class="n">A2BF</span>  <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">efi</span>       <span class="n">vfat</span>    <span class="n">defaults</span><span class="p">,</span><span class="n">discard</span>        <span class="mi">0</span> <span class="mi">0</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">cloud</span><span class="o">/</span><span class="n">azure_resource</span><span class="o">-</span><span class="n">part1</span>    <span class="o">/</span><span class="n">mnt</span>    <span class="n">auto</span>    <span class="n">defaults</span><span class="p">,</span><span class="n">nofail</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">systemd</span><span class="o">.</span><span class="n">requires</span><span class="o">=</span><span class="n">cloud</span><span class="o">-</span><span class="n">init</span><span class="o">.</span><span class="n">service</span><span class="p">,</span><span class="n">comment</span><span class="o">=</span><span class="n">cloudconfig</span>       <span class="mi">0</span>       <span class="mi">2</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdc1</span>      <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">nkrokhmal</span><span class="o">/</span><span class="n">storage</span>         <span class="n">auto</span>    <span class="n">defaults</span>                <span class="mi">0</span>       <span class="mi">0</span>
 </pre></div>
 </div>
 <p>Так как мы расширяли папку storage, то указали именно его во втором столбце.</p>
 <ul class="simple">
-<li><p>Для сохранения данных в из папки storage, переименуем его в storage1 выполнив команду:</p></li>
+<li>Для сохранения данных в из папки storage, переименуем его в storage1 выполнив команду:</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo mv storage/ storage1/</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">storage</span><span class="o">/</span> <span class="n">storage1</span><span class="o">/</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Вновь создадим папку storage:</p></li>
+<li>Вновь создадим папку storage:</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo mkdir storage</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkdir</span> <span class="n">storage</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>перезапустим Виртуальную машину:</p></li>
+<li>перезапустим Виртуальную машину:</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo reboot</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reboot</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>После перезапуска проверим содержимое папки storage в ней должна появиться папка lost+found.</p></li>
-<li><p>В вновь созданную папку storage скопируем сохраненные файлы из папки storage1, выполнив следующую команду:</p></li>
+<li>После перезапуска проверим содержимое папки storage в ней должна появиться папка lost+found.</li>
+<li>В вновь созданную папку storage скопируем сохраненные файлы из папки storage1, выполнив следующую команду:</li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo cp storage1/* storage -R</span>
+<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="n">storage1</span><span class="o">/*</span> <span class="n">storage</span> <span class="o">-</span><span class="n">R</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>после выполнения команды нужно проверить папку storage на наличие файлов.</p></li>
-<li><p>После копирования всех файлов папку storage1 можно удалить.</p></li>
+<li>после выполнения команды нужно проверить папку storage на наличие файлов.</li>
+<li>После копирования всех файлов папку storage1 можно удалить.</li>
 </ul>
 </div>
 
@@ -269,6 +280,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="howusequartzscheduler.html" class="btn btn-neutral float-left" title="How use Quartz Scheduler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Copy data from one FTP to another with time filter &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
+  <title>How to create user on ftp with limited rules &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How use Quartz Scheduler" href="howusequartzscheduler.html" />
-    <link rel="prev" title="Apache 2" href="apache2.html" /> 
+    <link rel="prev" title="Copy data from one FTP to another with time filter" href="copyoneftpfilestoanotherwithtimefilter.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,8 +89,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="apache2.html">Apache 2</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="copyoneftpfilestoanotherwithtimefilter.html">Copy data from one FTP to another with time filter</a></li>
+</ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Copy data from one FTP to another with time filter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to create user on ftp with limited rules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#connect-with-ssh">1. Connect with ssh:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-user">2. Create user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-rules-for-user">3. Set rules for user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#check-rules">4. Check rules</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
@@ -148,13 +157,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Copy data from one FTP to another with time filter</li>
+      <li>How to create user on ftp with limited rules</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/copyoneftpfilestoanotherwithtimefilter.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/ftpuser.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,38 +176,87 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="copy-data-from-one-ftp-to-another-with-time-filter">
-<h1>Copy data from one FTP to another with time filter<a class="headerlink" href="#copy-data-from-one-ftp-to-another-with-time-filter" title="Permalink to this headline">¶</a></h1>
-<p>Directory storage/ on new FTP server must have an owner <cite>user</cite> user, for that run following command:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo chown `user` -R storage
-</pre></div>
-</div>
-<p>All directories in storage/ folder must have write permissions, for that run following command:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo chmod 777 -R storage
-</pre></div>
-</div>
-<p>Folder owner for directories: clientavatars, dialogueaudios, dialoguevideos, media, mediacontent, useravatars must be <cite>user</cite>.</p>
-<ul class="simple">
-<li>Install sshpass on old FTP:</li>
+  <div class="section" id="how-to-create-user-on-ftp-with-limited-rules">
+<h1>How to create user on ftp with limited rules<a class="headerlink" href="#how-to-create-user-on-ftp-with-limited-rules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="connect-with-ssh">
+<h2>1. Connect with ssh:<a class="headerlink" href="#connect-with-ssh" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>test server: <strong>ssh heedbookadmi&#64;13.81.51.123</strong></li>
+<li>password <strong>——–</strong></li>
 </ul>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install sshpass
+</div></blockquote>
+</div>
+<div class="section" id="create-user">
+<h2>2. Create user<a class="headerlink" href="#create-user" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">nkrokhmal</span><span class="o">/</span><span class="n">storage</span> <span class="n">client</span>
+<span class="n">sudo</span> <span class="n">passwd</span> <span class="n">client</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li>Connect with old FTP and open /home/<cite>user</cite>/storage folder. Correct filtered time in 3 command line and run it :</li>
+<hr class="docutils" />
+<blockquote>
+<div><ul class="simple">
+<li><strong>-d</strong> - home directory <em>/home/nkrokhmal/storage</em></li>
+<li><strong>client</strong> - user name</li>
+<li><strong>Test_User12345</strong> - password</li>
 </ul>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>for f in dialoguevideos clientavatars useravatars media mediacontent dialogueaudios
-do
-  find $f/* -type f -newermt &quot;2020-02-12 00:00:00&quot; &gt;&gt; fileList.txt
-done
+</div></blockquote>
+</div>
+<div class="section" id="set-rules-for-user">
+<h2>3. Set rules for user<a class="headerlink" href="#set-rules-for-user" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setfacl</span> <span class="o">-</span><span class="n">R</span> <span class="o">-</span><span class="n">m</span> <span class="n">u</span><span class="p">:</span><span class="n">client</span><span class="p">:</span><span class="n">r</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">home</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<blockquote>
+<div><ul class="simple">
+<li><strong>-R</strong> - recursive for folders and files</li>
+<li><dl class="first docutils">
+<dt><strong>-m</strong> - modify</dt>
+<dd><ul class="first last">
+<li>u: <em>At the user level - rules are assigned to specific users</em>;</li>
+<li>g: <em>At the group level - assigned rules to specific groups;</em></li>
+<li>o: <em>For users who are not included in the group. All Others user</em> - this rule set general access from the site</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><strong>client</strong> - username</li>
+<li><strong>r-x</strong> - read and execute  (another options rwe - read, write, execute)</li>
+<li><strong>/home</strong> - folder for the rules</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="check-rules">
+<h2>4. Check rules<a class="headerlink" href="#check-rules" title="Permalink to this headline">¶</a></h2>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getfacl</span> <span class="o">*</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<blockquote>
+<div><strong>result example</strong></div></blockquote>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>client@ftpserver:/home/nkrokhmal$ getfacl *
+# file: storage
+# owner: nkrokhmal
+# group: root
+user::rwx
+user:nkrokhmal:rwx
+user:client:r-x
+group::r-x
+mask::rwx
+other::r-x
 
-for f in $(cat ./fileList.txt)
-do
-  sshpass -p &#39;secret_password&#39; sudo scp /home/`user`/storage/$f nkrokhmal@heedbookftp.northeurope.cloudapp.azure.com:/home/`user`/storage/$f
-  echo &quot;/home/`user`/storage/$f&quot;
-done
-rm -rf fileList.txt
+# file: teststorage
+# owner: nkrokhmal
+# group: root
+user::rwx
+user:nkrokhmal:rwx
+user:client:r-x
+group::r-x
+mask::rwx
+other::r-x
 </pre></div>
+</div>
 </div>
 </div>
 
@@ -213,7 +271,7 @@ rm -rf fileList.txt
         <a href="howusequartzscheduler.html" class="btn btn-neutral float-right" title="How use Quartz Scheduler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="apache2.html" class="btn btn-neutral float-left" title="Apache 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="copyoneftpfilestoanotherwithtimefilter.html" class="btn btn-neutral float-left" title="Copy data from one FTP to another with time filter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
