@@ -57,6 +57,15 @@ Extend disc value
 
    adddisktoazurevm
 
+Merge master and device branches
+^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   merge_master_devices
+
+
 Guide
 ^^^^^
 
