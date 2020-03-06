@@ -65,6 +65,13 @@ Merge master and device branches
 
    merge_master_devices
 
+Merge master and device branches
+^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   fix_problems
 
 Guide
 ^^^^^

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Выяснение причин и устранение сбоев системы &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
+  <title>Merge master and another branch &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Merge master and another branch" href="fix_problems.html" />
-    <link rel="prev" title="Расширение дискового пространства на Виртуальной машине" href="adddisktoazurevm.html" /> 
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Выяснение причин и устранение сбоев системы" href="merge_master_devices.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,11 +101,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="adddisktoazurevm.html">Расширение дискового пространства на Виртуальной машине</a></li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Выяснение причин и устранение сбоев системы</a></li>
-</ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="merge_master_devices.html">Выяснение причин и устранение сбоев системы</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Merge master and another branch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#merge-master-into-branch">1. Merge master into branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-branch-into-master">2. Merge branch into master</a></li>
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -157,13 +161,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Выяснение причин и устранение сбоев системы</li>
+      <li>Merge master and another branch</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/merge_master_devices.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/fix_problems.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,57 +180,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>Выяснение причин и устранение сбоев системы<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<ol class="arabic simple">
-<li>Зайти на виртуальную машину (на портале Azure адрес) по ssh<ul>
-<li>мастер тестового сервиса: <strong>heedbookadmin&#64;52.174.35.129</strong></li>
+  <div class="section" id="merge-master-and-another-branch">
+<h1>Merge master and another branch<a class="headerlink" href="#merge-master-and-another-branch" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="merge-master-into-branch">
+<h2>1. Merge master into branch<a class="headerlink" href="#merge-master-into-branch" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>branch name: <strong>devices</strong></li>
+<li>master name: <strong>master</strong></li>
 </ul>
-</li>
-<li>Получить информацию по слейвам</li>
-</ol>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span>
-</pre></div>
-</div>
-<hr class="docutils" />
-<p>результат (пример)</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get nodes
-NAME     STATUS     ROLES    AGE    VERSION
-master   Ready      master   113d   v1.14.2
-slave    NotReady   &lt;none&gt;   113d   v1.14.2
-slave2   Ready      &lt;none&gt;   51d    v1.14.2
+</div></blockquote>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">pull</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">devices</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>статус NotReady говорит об ошибке</li>
-<li>заходим на портал Azure, переходим на соответствующую виртуальную машину, нажимаем Restart</li>
+<li>in case you have conflicts</li>
+</ul>
+<blockquote>
+<div>Open your favorite text editor, such as VS or VS code, and choose “take source” option on git panel.</div></blockquote>
+<ul class="simple">
+<li>check appsetting files, and replase all settings, if needed</li>
+<li>commit your stages</li>
 </ul>
 </div></blockquote>
-<ol class="arabic simple" start="3">
-<li>Получить информацию по подам</li>
-</ol>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">get</span> <span class="n">podes</span>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;merge&quot;</span>
+<span class="n">git</span> <span class="n">push</span>
 </pre></div>
 </div>
+</div>
 <hr class="docutils" />
-<p>результат (пример)</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get pods
-NAME                                             READY   STATUS        RESTARTS   AGE
-audioanalyzeservice-54fd77444d-5x6w4             1/1     Running       6          7d
-default-http-backend-vq6lz                       1/1     Running       0          7d
-detectfaceidextendedscheduler-5449888bf6-cfml8   1/1     Running       0          23m
-detectfaceidextendedscheduler-5449888bf6-fh654   1/1     Terminating   0          144m
+<div class="section" id="merge-branch-into-master">
+<h2>2. Merge branch into master<a class="headerlink" href="#merge-branch-into-master" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>create new branch from devices</li>
+</ul>
+</div></blockquote>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">devices</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">fusion_branch</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>статусы Running, Terminating, ContainerCreating, ImagePullBackouff, Error</li>
-<li>ImagePullBackouff, Error  - говорят об ошибке</li>
+<li>replase all setting in this branch on master settings (connection strings, ftp settings etc)</li>
+<li>commit your stages</li>
+<li>merge all changes from master into fusion_branch (look part 1)</li>
+<li>commit merge</li>
 </ul>
 </div></blockquote>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;settings&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">origin</span> <span class="n">fusion_branch</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<blockquote>
+<div>make pull request to merge your stages into master from fusion_branch</div></blockquote>
+</div>
 </div>
 
 
@@ -237,10 +255,10 @@ detectfaceidextendedscheduler-5449888bf6-fh654   1/1     Terminating   0        
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="fix_problems.html" class="btn btn-neutral float-right" title="Merge master and another branch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="adddisktoazurevm.html" class="btn btn-neutral float-left" title="Расширение дискового пространства на Виртуальной машине" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="merge_master_devices.html" class="btn btn-neutral float-left" title="Выяснение причин и устранение сбоев системы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
