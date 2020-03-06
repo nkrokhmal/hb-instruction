@@ -36,7 +36,6 @@ Merge master and another branch
 2. Merge branch into master
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-	- first merge all changes from master into devices (look part 1)
 	- create new branch from devices
 
 .. code:: bash
@@ -49,6 +48,8 @@ Merge master and another branch
 
 	- replase all setting in this branch on master settings (connection strings, ftp settings etc)
 	- commit your stages
+	- merge all changes from master into fusion_branch (look part 1)
+	- commit merge
 	
 .. code:: bash
 
