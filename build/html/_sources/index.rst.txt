@@ -58,20 +58,29 @@ Extend disc value
    adddisktoazurevm
 
 Merge master and device branches
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
 
    merge_master_devices
 
-Merge master and device branches
-^^^^^^^^^^^^^^^^^
+Поиск и исправление проблем и ошибок работы сервисов
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
 
    fix_problems
+
+Заполнить dialogueId за определенный период в таблице SlideShowSessions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. toctree::
+   :maxdepth: 2
+
+   fill_slideshow_dialogueid
+
 
 Guide
 ^^^^^

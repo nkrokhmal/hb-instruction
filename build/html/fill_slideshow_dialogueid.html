@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
+  <title>Заполнить ссылку на диалог в записях про показы рекламы &mdash; Read the Docs Sphinx Theme Examples  documentation</title>
   
 
   
@@ -34,8 +33,10 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Merge master and another branch" href="fix_problems.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -106,8 +107,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -159,12 +160,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Заполнить ссылку на диалог в записях про показы рекламы</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/fill_slideshow_dialogueid.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -176,11 +179,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="id1">
+<h1>Заполнить ссылку на диалог в записях про показы рекламы<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Работу по заполнению dialogueId в показах производит сервис FillSlideShowDialogueService</li>
+<li><dl class="first docutils">
+<dt>В базе создана функция fill_dialogue_in_slideshow(DialogueId) которая</dt>
+<dd><ul class="first last">
+<li>принимает айди диалога</li>
+<li>находит в базе показы(SlideShowSessions) во время диалога</li>
+<li>делает update показов, сохраняя айди диалога для них</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Если возникла необходимость заполнить dialogueId “в ручном режиме”, достаточно обратиться к функции fill_dialogue_in_slideshow(передать dialogueId) средствами PostgreSQL</li>
+</ol>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">fill_dialogue_in_slideshow</span><span class="p">(</span><span class="s2">&quot;DialogueId&quot;</span><span class="p">),</span> <span class="s2">&quot;DialogueId&quot;</span>
+<span class="kn">from</span> <span class="s2">&quot;Dialogues&quot;</span>
+<span class="n">where</span> <span class="s2">&quot;StatusId&quot;</span> <span class="o">=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="s2">&quot;BegTime&quot;</span> <span class="o">&gt;</span> <span class="s1">&#39;2020-03-10&#39;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
 </div>
 
 
@@ -188,6 +208,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fix_problems.html" class="btn btn-neutral float-left" title="Merge master and another branch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
