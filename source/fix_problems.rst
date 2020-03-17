@@ -36,26 +36,52 @@ Merge master and another branch
 2. Merge branch into master
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-	- create new branch from devices
+	- create new branch from master
 
 .. code:: bash
 
-	git checkout devices
+	git checkout master
+	git pull
 	git checkout -b fusion_branch
 	
 
 ----------------------------
 
-	- replase all setting in this branch on master settings (connection strings, ftp settings etc)
-	- commit your stages
-	- merge all changes from master into fusion_branch (look part 1)
-	- commit merge
+	 2.1. case 1:
+		
+.. code:: bash
+
+	git merge --no-commit devices
+	git status
+	git add <file names for adding to commit>
+	git commit -m <commit name>
+	git push --set-upstream origin fusion_branch
+
+---------------------------	
+	
+	 - create pull request to merge fusion_branch into master
+
+---------------------------
+
+	 2.1. case 2:
+
+	 - add to commit particular folders/files
 	
 .. code:: bash
 
-	git add .
-	git commit -m "settings"
-	git push --set-upstream origin fusion_branch
+	git checkout origin/devices --Heedbook/HbApi
+	git checkout origin/devices --Heedbook/HbOperations
+
+
+----------------------------
+
+	open project in IDE (VS, VS Code)
+	remove settings from commit
+
+.. image:: images/ex1.jpg
+
+.. image:: images/ex2.jpg
+
 
 ----------------------------
 
