@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="How use Quartz Scheduler" href="howusequartzscheduler.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,6 +94,9 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Расширение дискового пространства на Виртуальной машине</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -200,9 +205,28 @@
 </pre></div>
 </div>
 <ul class="simple">
+<li><p>В консоли появится надпись. Нажмите Enter.</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">First sector (34-134217694, default = 2048) or {+-}size{KMGTP}:</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>В консоли появится надпись. Нажмите Enter.</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Last sector (2048-134217694, default = 134217694) or {+-}size{KMGTP}:</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>В консоли пояится надпись. Нажмите Enter.</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Current type is &#39;Linux filesystem&#39;</span>
+<span class="go">Hex code or GUID (L to show codes, Enter = 8300):</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>После того как в консоли будет написано, что создан раздел, введите: w</p></li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Command (m for help): w</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Command (? for help): w</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -262,6 +286,20 @@
 <li><p>после выполнения команды нужно проверить папку storage на наличие файлов.</p></li>
 <li><p>После копирования всех файлов папку storage1 можно удалить.</p></li>
 </ul>
+<p><strong>Если при какой либо причине фтп стал недоступен и подключиться к нему через ssh не удается(к примеру после перезагрузки ftp)</strong></p>
+<blockquote>
+<div><p>Одно из возможных причин, это то что OS загрузилась не с того диска.
+Для решения нужно сделать следующие действия:
+- Зайти на VM через консоль в личном кабинете виртуальной машины.
+- В Файле /etc/fstab закоментировать строку с диском расширения.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">      sudo vim /etc/fstab</span>
+
+<span class="go">- Перезагрузить VM. После этого виртуальная машина будет доступна по ssh.</span>
+<span class="go">- Добавить диск расширения в файл /etc/fstab (раскомментировать строку с диском расширения).</span>
+</pre></div>
+</div>
+<p>Перезагрузить VM.</p>
 </div>
 
 
@@ -269,6 +307,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="howusequartzscheduler.html" class="btn btn-neutral float-left" title="How use Quartz Scheduler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
