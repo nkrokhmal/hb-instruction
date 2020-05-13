@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -189,32 +189,33 @@
 <h2>1. Merge master into branch<a class="headerlink" href="#merge-master-into-branch" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>branch name: <strong>devices</strong></li>
-<li>master name: <strong>master</strong></li>
+<li><p>branch name: <strong>devices</strong></p></li>
+<li><p>master name: <strong>master</strong></p></li>
 </ul>
 </div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
-<span class="n">git</span> <span class="n">pull</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">devices</span>
-<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+git checkout devices
+git fetch origin
+git merge origin/master
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>in case you have conflicts</li>
+<li><p>in case you have conflicts</p></li>
 </ul>
 <blockquote>
-<div>Open your favorite text editor, such as VS or VS code, and choose “take source” option on git panel.</div></blockquote>
+<div><p>Open your favorite text editor, such as VS or VS code, and choose “take source” option on git panel.</p>
+</div></blockquote>
 <ul class="simple">
-<li>check appsetting files, and replase all settings, if needed</li>
-<li>commit your stages</li>
+<li><p>check appsetting files, and replase all settings, if needed</p></li>
+<li><p>commit your stages</p></li>
 </ul>
 </div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;merge&quot;</span>
-<span class="n">git</span> <span class="n">push</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add .
+git commit -m <span class="s2">&quot;merge&quot;</span>
+git push
 </pre></div>
 </div>
 </div>
@@ -223,50 +224,53 @@
 <h2>2. Merge branch into master<a class="headerlink" href="#merge-branch-into-master" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>create new branch from master</li>
+<li><p>create new branch from master</p></li>
 </ul>
 </div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
-<span class="n">git</span> <span class="n">pull</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">fusion_branch</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+git checkout -b fusion_branch
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
-<div>2.1. case 1:</div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">merge</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">commit</span> <span class="n">devices</span>
-<span class="n">git</span> <span class="n">status</span>
-<span class="n">git</span> <span class="n">add</span> <span class="o">&lt;</span><span class="n">file</span> <span class="n">names</span> <span class="k">for</span> <span class="n">adding</span> <span class="n">to</span> <span class="n">commit</span><span class="o">&gt;</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="o">&lt;</span><span class="n">commit</span> <span class="n">name</span><span class="o">&gt;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">origin</span> <span class="n">fusion_branch</span>
+<div><p>2.1. case 1:</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git merge --no-commit devices
+git status
+git add &lt;file names <span class="k">for</span> adding to commit&gt;
+git commit -m &lt;commit name&gt;
+git push --set-upstream origin fusion_branch
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>create pull request to merge fusion_branch into master</li>
+<li><p>create pull request to merge fusion_branch into master</p></li>
 </ul>
 </div></blockquote>
 <hr class="docutils" />
 <blockquote>
 <div><p>2.1. case 2:</p>
 <ul class="simple">
-<li>add to commit particular folders/files</li>
+<li><p>add to commit particular folders/files</p></li>
 </ul>
 </div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">origin</span><span class="o">/</span><span class="n">devices</span> <span class="o">--</span><span class="n">Heedbook</span><span class="o">/</span><span class="n">HbApi</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="n">origin</span><span class="o">/</span><span class="n">devices</span> <span class="o">--</span><span class="n">Heedbook</span><span class="o">/</span><span class="n">HbOperations</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout origin/devices --Heedbook/HbApi
+git checkout origin/devices --Heedbook/HbOperations
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
-<div>open project in IDE (VS, VS Code)
-remove settings from commit</div></blockquote>
+<div><p>open project in IDE (VS, VS Code)
+remove settings from commit</p>
+</div></blockquote>
 <img alt="_images/ex1.jpg" src="_images/ex1.jpg" />
 <img alt="_images/ex2.jpg" src="_images/ex2.jpg" />
 <hr class="docutils" />
 <blockquote>
-<div>make pull request to merge your stages into master from fusion_branch</div></blockquote>
+<div><p>make pull request to merge your stages into master from fusion_branch</p>
+</div></blockquote>
 </div>
 </div>
 

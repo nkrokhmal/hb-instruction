@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -108,6 +108,15 @@
 <li class="toctree-l1"><a class="reference internal" href="adddisktoazurevm.html">Расширение дискового пространства на Виртуальной машине</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="merge_master_devices.html">Выяснение причин и устранение сбоев системы</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html#contanct">Contanct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html#question">Question</a></li>
@@ -182,63 +191,63 @@
 <h2>1. Connect with ssh:<a class="headerlink" href="#connect-with-ssh" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>test server: <strong>ssh heedbookadmi&#64;13.81.51.123</strong></li>
-<li>password <strong>——–</strong></li>
+<li><p>test server: <strong>ssh heedbookadmi&#64;13.81.51.123</strong></p></li>
+<li><p>password <strong>——–</strong></p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="create-user">
 <h2>2. Create user<a class="headerlink" href="#create-user" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">nkrokhmal</span><span class="o">/</span><span class="n">storage</span> <span class="n">client</span>
-<span class="n">sudo</span> <span class="n">passwd</span> <span class="n">client</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo useradd -d /home/nkrokhmal/storage client
+sudo passwd client
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li><strong>-d</strong> - home directory <em>/home/nkrokhmal/storage</em></li>
-<li><strong>client</strong> - user name</li>
-<li><strong>Test_User12345</strong> - password</li>
+<li><p><strong>-d</strong> - home directory <em>/home/nkrokhmal/storage</em></p></li>
+<li><p><strong>client</strong> - user name</p></li>
+<li><p><strong>Test_User12345</strong> - password</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="set-rules-for-user">
 <h2>3. Set rules for user<a class="headerlink" href="#set-rules-for-user" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setfacl</span> <span class="o">-</span><span class="n">R</span> <span class="o">-</span><span class="n">m</span> <span class="n">u</span><span class="p">:</span><span class="n">client</span><span class="p">:</span><span class="n">r</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">home</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setfacl -R -m u:client:r-x /home
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li><strong>-R</strong> - recursive for folders and files</li>
-<li><dl class="first docutils">
-<dt><strong>-m</strong> - modify</dt>
-<dd><ul class="first last">
-<li>u: <em>At the user level - rules are assigned to specific users</em>;</li>
-<li>g: <em>At the group level - assigned rules to specific groups;</em></li>
-<li>o: <em>For users who are not included in the group. All Others user</em> - this rule set general access from the site</li>
+<li><p><strong>-R</strong> - recursive for folders and files</p></li>
+<li><dl class="simple">
+<dt><strong>-m</strong> - modify</dt><dd><ul>
+<li><p>u: <em>At the user level - rules are assigned to specific users</em>;</p></li>
+<li><p>g: <em>At the group level - assigned rules to specific groups;</em></p></li>
+<li><p>o: <em>For users who are not included in the group. All Others user</em> - this rule set general access from the site</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><strong>client</strong> - username</li>
-<li><strong>r-x</strong> - read and execute  (another options rwe - read, write, execute)</li>
-<li><strong>/home</strong> - folder for the rules</li>
+<li><p><strong>client</strong> - username</p></li>
+<li><p><strong>r-x</strong> - read and execute  (another options rwe - read, write, execute)</p></li>
+<li><p><strong>/home</strong> - folder for the rules</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="check-rules">
 <h2>4. Check rules<a class="headerlink" href="#check-rules" title="Permalink to this headline">¶</a></h2>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getfacl</span> <span class="o">*</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getfacl *
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
-<div><strong>result example</strong></div></blockquote>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>client@ftpserver:/home/nkrokhmal$ getfacl *
-# file: storage
-# owner: nkrokhmal
-# group: root
+<div><p><strong>result example</strong></p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client@ftpserver:/home/nkrokhmal$ getfacl *
+<span class="c1"># file: storage</span>
+<span class="c1"># owner: nkrokhmal</span>
+<span class="c1"># group: root</span>
 user::rwx
 user:nkrokhmal:rwx
 user:client:r-x
@@ -246,9 +255,9 @@ group::r-x
 mask::rwx
 other::r-x
 
-# file: teststorage
-# owner: nkrokhmal
-# group: root
+<span class="c1"># file: teststorage</span>
+<span class="c1"># owner: nkrokhmal</span>
+<span class="c1"># group: root</span>
 user::rwx
 user:nkrokhmal:rwx
 user:client:r-x

@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -97,10 +97,22 @@
 <li class="toctree-l1"><a class="reference internal" href="copyoneftpfilestoanotherwithtimefilter.html">Copy data from one FTP to another with time filter</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="ftpuser.html">How to create user on ftp with limited rules</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="adddisktoazurevm.html">Расширение дискового пространства на Виртуальной машине</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="merge_master_devices.html">Выяснение причин и устранение сбоев системы</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -177,103 +189,103 @@
 <h2>Certificates expiration in cluster<a class="headerlink" href="#certificates-expiration-in-cluster" title="Permalink to this headline">¶</a></h2>
 <p>If certificate is expired for DNS name (for example <cite>heedbookslave.northeurope.cloudapp.azure.com</cite>)</p>
 <ol class="arabic simple">
-<li>Copy DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</li>
-<li>Rename DNS name to any another (for example <cite>heedbookslave2.northeurope.cloudapp.azure.com</cite>).</li>
-<li>Create new VM outside the cluster (let’s call it <cite>dns-vm</cite>).</li>
-<li>For new VM <cite>dns-vm</cite> create new DNS name equals copied DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</li>
-<li>Run the following commands in new virtual machine <cite>dns-vm</cite>.</li>
+<li><p>Copy DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</p></li>
+<li><p>Rename DNS name to any another (for example <cite>heedbookslave2.northeurope.cloudapp.azure.com</cite>).</p></li>
+<li><p>Create new VM outside the cluster (let’s call it <cite>dns-vm</cite>).</p></li>
+<li><p>For new VM <cite>dns-vm</cite> create new DNS name equals copied DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</p></li>
+<li><p>Run the following commands in new virtual machine <cite>dns-vm</cite>.</p></li>
 </ol>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
-$ sudo apt install certbot
-$ sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt update
+<span class="gp">$</span> sudo apt install certbot
+<span class="gp">$</span> sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
 </pre></div>
 </div>
 <p>When running the command, you will be prompted to enter an email address and agree to the terms of service. After doing so, you should see a message telling you the process was successful and where your certificates are stored:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>Output
-IMPORTANT NOTES:
-- Congratulations! Your certificate and chain have been saved at:
-/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem
-Your key file has been saved at:
-/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem
-Your cert will expire on 2018-10-09. To obtain a new or tweaked
-version of this certificate in the future, simply run certbot
-again. To non-interactively renew *all* of your certificates, run
-&quot;certbot renew&quot;
-- Your account credentials have been saved in your Certbot
-configuration directory at /etc/letsencrypt. You should make a
-secure backup of this folder now. This configuration directory will
-also contain certificates and private keys obtained by Certbot so
-making regular backups of this folder is ideal.
-- If you like Certbot, please consider supporting our work by:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Output</span>
+<span class="go">IMPORTANT NOTES:</span>
+<span class="go">- Congratulations! Your certificate and chain have been saved at:</span>
+<span class="go">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span>
+<span class="go">Your key file has been saved at:</span>
+<span class="go">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span>
+<span class="go">Your cert will expire on 2018-10-09. To obtain a new or tweaked</span>
+<span class="go">version of this certificate in the future, simply run certbot</span>
+<span class="go">again. To non-interactively renew *all* of your certificates, run</span>
+<span class="go">&quot;certbot renew&quot;</span>
+<span class="go">- Your account credentials have been saved in your Certbot</span>
+<span class="go">configuration directory at /etc/letsencrypt. You should make a</span>
+<span class="go">secure backup of this folder now. This configuration directory will</span>
+<span class="go">also contain certificates and private keys obtained by Certbot so</span>
+<span class="go">making regular backups of this folder is ideal.</span>
+<span class="go">- If you like Certbot, please consider supporting our work by:</span>
 
-Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
-Donating to EFF:                    https://eff.org/donate-le
+<span class="go">Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate</span>
+<span class="go">Donating to EFF:                    https://eff.org/donate-le</span>
 </pre></div>
 </div>
 <p>Copy files</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span></code></p></li>
 </ul>
 <p>to master node to directory <code class="docutils literal notranslate"><span class="pre">/home/heeadbookadmin/source/hb-infrastructure/Certificates</span></code> and rename it using format <code class="docutils literal notranslate"><span class="pre">filename_YYYYmmDD.pem</span></code> and delete your VM <cite>dns-vm</cite>.</p>
 <p>Run following command in VM master node</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl delete secret tls-secret
-$ kubectl create secret tls tls-secret --key privkey_YYYYmmDD.pem --cert fullchain_YYYYmmDD.pem
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> kubectl delete secret tls-secret
+<span class="gp">$</span> kubectl create secret tls tls-secret --key privkey_YYYYmmDD.pem --cert fullchain_YYYYmmDD.pem
 </pre></div>
 </div>
 </div>
 <div class="section" id="certificates-creation-in-cluster">
 <h2>Certificates creation in cluster<a class="headerlink" href="#certificates-creation-in-cluster" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Create for your VM DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</li>
-<li>Run the following commands in new virtual machine <cite>dns-vm</cite>.</li>
+<li><p>Create for your VM DNS name (<cite>heedbookslave.northeurope.cloudapp.azure.com</cite>).</p></li>
+<li><p>Run the following commands in new virtual machine <cite>dns-vm</cite>.</p></li>
 </ol>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt update
-$ sudo apt install certbot
-$ sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt update
+<span class="gp">$</span> sudo apt install certbot
+<span class="gp">$</span> sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com
 </pre></div>
 </div>
 <p>When running the command, you will be prompted to enter an email address and agree to the terms of service. After doing so, you should see a message telling you the process was successful and where your certificates are stored:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>Output
-IMPORTANT NOTES:
-- Congratulations! Your certificate and chain have been saved at:
-/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem
-Your key file has been saved at:
-/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem
-Your cert will expire on 2018-10-09. To obtain a new or tweaked
-version of this certificate in the future, simply run certbot
-again. To non-interactively renew *all* of your certificates, run
-&quot;certbot renew&quot;
-- Your account credentials have been saved in your Certbot
-configuration directory at /etc/letsencrypt. You should make a
-secure backup of this folder now. This configuration directory will
-also contain certificates and private keys obtained by Certbot so
-making regular backups of this folder is ideal.
-- If you like Certbot, please consider supporting our work by:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Output</span>
+<span class="go">IMPORTANT NOTES:</span>
+<span class="go">- Congratulations! Your certificate and chain have been saved at:</span>
+<span class="go">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span>
+<span class="go">Your key file has been saved at:</span>
+<span class="go">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span>
+<span class="go">Your cert will expire on 2018-10-09. To obtain a new or tweaked</span>
+<span class="go">version of this certificate in the future, simply run certbot</span>
+<span class="go">again. To non-interactively renew *all* of your certificates, run</span>
+<span class="go">&quot;certbot renew&quot;</span>
+<span class="go">- Your account credentials have been saved in your Certbot</span>
+<span class="go">configuration directory at /etc/letsencrypt. You should make a</span>
+<span class="go">secure backup of this folder now. This configuration directory will</span>
+<span class="go">also contain certificates and private keys obtained by Certbot so</span>
+<span class="go">making regular backups of this folder is ideal.</span>
+<span class="go">- If you like Certbot, please consider supporting our work by:</span>
 
-Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate
-Donating to EFF:                    https://eff.org/donate-le
+<span class="go">Donating to ISRG / Let&#39;s Encrypt:   https://letsencrypt.org/donate</span>
+<span class="go">Donating to EFF:                    https://eff.org/donate-le</span>
 </pre></div>
 </div>
 <p>Copy files</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/fullchain.pem</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/letsencrypt/live/heedbookslave.northeurope.cloudapp.azure.com/privkey.pem</span></code></p></li>
 </ul>
 <p>to master node to directory <code class="docutils literal notranslate"><span class="pre">/home/heeadbookadmin/source/hb-infrastructure/Certificates</span></code> and rename it using format <code class="docutils literal notranslate"><span class="pre">filename_YYYYmmDD.pem</span></code>. Run following commands in master node</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">certbot</span> <span class="n">certonly</span> <span class="o">--</span><span class="n">standalone</span> <span class="o">--</span><span class="n">preferred</span><span class="o">-</span><span class="n">challenges</span> <span class="n">http</span> <span class="o">-</span><span class="n">d</span> <span class="n">heedbookslave</span><span class="o">.</span><span class="n">northeurope</span><span class="o">.</span><span class="n">cloudapp</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo certbot certonly --standalone --preferred-challenges http -d heedbookslave.northeurope.cloudapp.azure.com</span>
 </pre></div>
 </div>
 <p>Add secret name to <code class="docutils literal notranslate"><span class="pre">/home/heedbookadmin/source/hb-infrastructure/Nginx/nginx-ingress.yaml</span></code> file</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">:</span>
-  <span class="n">tls</span><span class="p">:</span>
-  <span class="o">-</span> <span class="n">hosts</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">heedbookslave</span><span class="o">.</span><span class="n">northeurope</span><span class="o">.</span><span class="n">cloudapp</span><span class="o">.</span><span class="n">azure</span><span class="o">.</span><span class="n">com</span>
-    <span class="n">secretName</span><span class="p">:</span> <span class="n">tls</span><span class="o">-</span><span class="n">secret</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">spec:</span>
+<span class="go">  tls:</span>
+<span class="go">  - hosts:</span>
+<span class="go">    - heedbookslave.northeurope.cloudapp.azure.com</span>
+<span class="go">    secretName: tls-secret</span>
 </pre></div>
 </div>
 <p>and run command</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span> <span class="n">nginx</span><span class="o">-</span><span class="n">ingress</span><span class="o">.</span><span class="n">yaml</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl apply -f nginx-ingress.yaml</span>
 </pre></div>
 </div>
 </div>

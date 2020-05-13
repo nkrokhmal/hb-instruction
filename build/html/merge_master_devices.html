@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -108,6 +108,9 @@
 <li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html#contanct">Contanct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html#question">Question</a></li>
@@ -179,18 +182,19 @@
   <div class="section" id="id1">
 <h1>Выяснение причин и устранение сбоев системы<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>Зайти на виртуальную машину (на портале Azure адрес) по ssh<ul>
-<li>мастер тестового сервиса: <strong>heedbookadmin&#64;52.174.35.129</strong></li>
+<li><p>Зайти на виртуальную машину (на портале Azure адрес) по ssh</p>
+<ul class="simple">
+<li><p>мастер тестового сервиса: <strong>heedbookadmin&#64;52.174.35.129</strong></p></li>
 </ul>
 </li>
-<li>Получить информацию по слейвам</li>
+<li><p>Получить информацию по слейвам</p></li>
 </ol>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">get</span> <span class="n">nodes</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get nodes
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>результат (пример)</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get nodes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get nodes
 NAME     STATUS     ROLES    AGE    VERSION
 master   Ready      master   113d   v1.14.2
 slave    NotReady   &lt;none&gt;   113d   v1.14.2
@@ -200,31 +204,31 @@ slave2   Ready      &lt;none&gt;   51d    v1.14.2
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>статус NotReady говорит об ошибке</li>
-<li>заходим на портал Azure, переходим на соответствующую виртуальную машину, нажимаем Restart</li>
+<li><p>статус NotReady говорит об ошибке</p></li>
+<li><p>заходим на портал Azure, переходим на соответствующую виртуальную машину, нажимаем Restart</p></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="3">
-<li>Получить информацию по подам</li>
+<li><p>Получить информацию по подам</p></li>
 </ol>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">get</span> <span class="n">podes</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get podes
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>результат (пример)</p>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get pods
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heedbookadmin@master:~$ kubectl get pods
 NAME                                             READY   STATUS        RESTARTS   AGE
-audioanalyzeservice-54fd77444d-5x6w4             1/1     Running       6          7d
-default-http-backend-vq6lz                       1/1     Running       0          7d
-detectfaceidextendedscheduler-5449888bf6-cfml8   1/1     Running       0          23m
-detectfaceidextendedscheduler-5449888bf6-fh654   1/1     Terminating   0          144m
+audioanalyzeservice-54fd77444d-5x6w4             <span class="m">1</span>/1     Running       <span class="m">6</span>          7d
+default-http-backend-vq6lz                       <span class="m">1</span>/1     Running       <span class="m">0</span>          7d
+detectfaceidextendedscheduler-5449888bf6-cfml8   <span class="m">1</span>/1     Running       <span class="m">0</span>          23m
+detectfaceidextendedscheduler-5449888bf6-fh654   <span class="m">1</span>/1     Terminating   <span class="m">0</span>          144m
 </pre></div>
 </div>
 <hr class="docutils" />
 <blockquote>
 <div><ul class="simple">
-<li>статусы Running, Terminating, ContainerCreating, ImagePullBackouff, Error</li>
-<li>ImagePullBackouff, Error  - говорят об ошибке</li>
+<li><p>статусы Running, Terminating, ContainerCreating, ImagePullBackouff, Error</p></li>
+<li><p>ImagePullBackouff, Error  - говорят об ошибке</p></li>
 </ul>
 </div></blockquote>
 </div>

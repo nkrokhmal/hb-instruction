@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How use Quartz Scheduler" href="howusequartzscheduler.html" />
+    <link rel="next" title="How to create user on ftp with limited rules" href="ftpuser.html" />
     <link rel="prev" title="Apache 2" href="apache2.html" /> 
 </head>
 
@@ -93,10 +93,22 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Copy data from one FTP to another with time filter</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="ftpuser.html">How to create user on ftp with limited rules</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="adddisktoazurevm.html">Расширение дискового пространства на Виртуальной машине</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="merge_master_devices.html">Выяснение причин и устранение сбоев системы</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -170,34 +182,34 @@
   <div class="section" id="copy-data-from-one-ftp-to-another-with-time-filter">
 <h1>Copy data from one FTP to another with time filter<a class="headerlink" href="#copy-data-from-one-ftp-to-another-with-time-filter" title="Permalink to this headline">¶</a></h1>
 <p>Directory storage/ on new FTP server must have an owner <cite>user</cite> user, for that run following command:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo chown `user` -R storage
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown <span class="sb">`</span>user<span class="sb">`</span> -R storage
 </pre></div>
 </div>
 <p>All directories in storage/ folder must have write permissions, for that run following command:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo chmod 777 -R storage
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo chmod <span class="m">777</span> -R storage
 </pre></div>
 </div>
 <p>Folder owner for directories: clientavatars, dialogueaudios, dialoguevideos, media, mediacontent, useravatars must be <cite>user</cite>.</p>
 <ul class="simple">
-<li>Install sshpass on old FTP:</li>
+<li><p>Install sshpass on old FTP:</p></li>
 </ul>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install sshpass
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install sshpass
 </pre></div>
 </div>
 <ul class="simple">
-<li>Connect with old FTP and open /home/<cite>user</cite>/storage folder. Correct filtered time in 3 command line and run it :</li>
+<li><p>Connect with old FTP and open /home/<cite>user</cite>/storage folder. Correct filtered time in 3 command line and run it :</p></li>
 </ul>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>for f in dialoguevideos clientavatars useravatars media mediacontent dialogueaudios
-do
-  find $f/* -type f -newermt &quot;2020-02-12 00:00:00&quot; &gt;&gt; fileList.txt
-done
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">for f in dialoguevideos clientavatars useravatars media mediacontent dialogueaudios</span>
+<span class="go">do</span>
+<span class="go">  find $f/* -type f -newermt &quot;2020-02-12 00:00:00&quot; &gt;&gt; fileList.txt</span>
+<span class="go">done</span>
 
-for f in $(cat ./fileList.txt)
-do
-  sshpass -p &#39;secret_password&#39; sudo scp /home/`user`/storage/$f nkrokhmal@heedbookftp.northeurope.cloudapp.azure.com:/home/`user`/storage/$f
-  echo &quot;/home/`user`/storage/$f&quot;
-done
-rm -rf fileList.txt
+<span class="go">for f in $(cat ./fileList.txt)</span>
+<span class="go">do</span>
+<span class="go">  sshpass -p &#39;secret_password&#39; sudo scp /home/`user`/storage/$f nkrokhmal@heedbookftp.northeurope.cloudapp.azure.com:/home/`user`/storage/$f</span>
+<span class="go">  echo &quot;/home/`user`/storage/$f&quot;</span>
+<span class="go">done</span>
+<span class="go">rm -rf fileList.txt</span>
 </pre></div>
 </div>
 </div>
@@ -210,7 +222,7 @@ rm -rf fileList.txt
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="howusequartzscheduler.html" class="btn btn-neutral float-right" title="How use Quartz Scheduler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ftpuser.html" class="btn btn-neutral float-right" title="How to create user on ftp with limited rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="apache2.html" class="btn btn-neutral float-left" title="Apache 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

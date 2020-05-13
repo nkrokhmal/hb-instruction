@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -182,22 +182,21 @@
   <div class="section" id="id1">
 <h1>Заполнить ссылку на диалог в записях про показы рекламы<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li>Работу по заполнению dialogueId в показах производит сервис FillSlideShowDialogueService</li>
-<li><dl class="first docutils">
-<dt>В базе создана функция fill_dialogue_in_slideshow(DialogueId) которая</dt>
-<dd><ul class="first last">
-<li>принимает айди диалога</li>
-<li>находит в базе показы(SlideShowSessions) во время диалога</li>
-<li>делает update показов, сохраняя айди диалога для них</li>
+<li><p>Работу по заполнению dialogueId в показах производит сервис FillSlideShowDialogueService</p></li>
+<li><dl class="simple">
+<dt>В базе создана функция fill_dialogue_in_slideshow(DialogueId) которая</dt><dd><ul class="simple">
+<li><p>принимает айди диалога</p></li>
+<li><p>находит в базе показы(SlideShowSessions) во время диалога</p></li>
+<li><p>делает update показов, сохраняя айди диалога для них</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Если возникла необходимость заполнить dialogueId “в ручном режиме”, достаточно обратиться к функции fill_dialogue_in_slideshow(передать dialogueId) средствами PostgreSQL</li>
+<li><p>Если возникла необходимость заполнить dialogueId “в ручном режиме”, достаточно обратиться к функции fill_dialogue_in_slideshow(передать dialogueId) средствами PostgreSQL</p></li>
 </ol>
-<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">fill_dialogue_in_slideshow</span><span class="p">(</span><span class="s2">&quot;DialogueId&quot;</span><span class="p">),</span> <span class="s2">&quot;DialogueId&quot;</span>
-<span class="kn">from</span> <span class="s2">&quot;Dialogues&quot;</span>
-<span class="n">where</span> <span class="s2">&quot;StatusId&quot;</span> <span class="o">=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="s2">&quot;BegTime&quot;</span> <span class="o">&gt;</span> <span class="s1">&#39;2020-03-10&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">select</span> fill_dialogue_in_slideshow<span class="o">(</span><span class="s2">&quot;DialogueId&quot;</span><span class="o">)</span>, <span class="s2">&quot;DialogueId&quot;</span>
+from <span class="s2">&quot;Dialogues&quot;</span>
+where <span class="s2">&quot;StatusId&quot;</span> <span class="o">=</span> <span class="m">3</span> and <span class="s2">&quot;BegTime&quot;</span> &gt; <span class="s1">&#39;2020-03-10&#39;</span>
 </pre></div>
 </div>
 <hr class="docutils" />

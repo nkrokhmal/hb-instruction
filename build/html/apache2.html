@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -98,10 +98,22 @@
 <li class="toctree-l1"><a class="reference internal" href="copyoneftpfilestoanotherwithtimefilter.html">Copy data from one FTP to another with time filter</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="ftpuser.html">How to create user on ftp with limited rules</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="howusequartzscheduler.html">How use Quartz Scheduler</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="adddisktoazurevm.html">Расширение дискового пространства на Виртуальной машине</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="merge_master_devices.html">Выяснение причин и устранение сбоев системы</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fix_problems.html">Merge master and another branch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fill_slideshow_dialogueid.html">Заполнить ссылку на диалог в записях про показы рекламы</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
@@ -177,69 +189,69 @@
 <div class="section" id="install-apache2">
 <h2>Install Apache2<a class="headerlink" href="#install-apache2" title="Permalink to this headline">¶</a></h2>
 <p>Устанавливаем Apache2 на виртуальную машину</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">apache2</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt-get update</span>
+<span class="go">sudo apt install apache2</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="apache2-configuration">
 <h2>Apache2 configuration<a class="headerlink" href="#apache2-configuration" title="Permalink to this headline">¶</a></h2>
 <p>Создаем в директории <cite>/etc/apach2/sites-available</cite> файл <cite>ftpserver.conf</cite></p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
-DocumentRoot /home/nkrokhmal/storage
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-&lt;Directory /home/nkrokhmal/storage&gt;
-        AllowOverride None
-        Order allow,deny
-        # allow from {your ip}
-        Require all granted
-&lt;/Directory&gt;
-&lt;Directory /home/nkrokhmal/storage/clientavatars&gt;
-        AllowOverride None
-        Order allow,deny
-        &lt;Files ~ &quot;\.(jpg|png)$&quot;&gt;
-                order deny,allow
-                Allow from All
-        &lt;/Files&gt;
-&lt;/Directory&gt;
-&lt;Directory /home/nkrokhmal/storage/dialoguevideos&gt;
-        AllowOverride None
-        Order allow,deny
-        &lt;Files ~ &quot;\.(mkv|webm|mp4)$&quot;&gt;
-                order deny,allow
-                Allow from All
-        &lt;/Files&gt;
-&lt;/Directory&gt;
-&lt;Directory /home/nkrokhmal/storage/screenshots&gt;
-        AllowOverride None
-        Order allow,deny
-        &lt;Files ~ &quot;\.(jpg|png)$&quot;&gt;
-                order deny,allow
-                Allow from All
-        &lt;/Files&gt;
-&lt;/Directory&gt;
-&lt;Directory /home/nkrokhmal/storage/media&gt;
-        allow from all
-        AllowOverride None
-        Order allow,deny
-&lt;/Directory&gt;
-&lt;/VirtualHost&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;VirtualHost *:80&gt;</span>
+<span class="go">DocumentRoot /home/nkrokhmal/storage</span>
+<span class="go">ErrorLog ${APACHE_LOG_DIR}/error.log</span>
+<span class="go">CustomLog ${APACHE_LOG_DIR}/access.log combined</span>
+<span class="go">&lt;Directory /home/nkrokhmal/storage&gt;</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Order allow,deny</span>
+<span class="gp">        #</span> allow from <span class="o">{</span>your ip<span class="o">}</span>
+<span class="go">        Require all granted</span>
+<span class="go">&lt;/Directory&gt;</span>
+<span class="go">&lt;Directory /home/nkrokhmal/storage/clientavatars&gt;</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Order allow,deny</span>
+<span class="go">        &lt;Files ~ &quot;\.(jpg|png)$&quot;&gt;</span>
+<span class="go">                order deny,allow</span>
+<span class="go">                Allow from All</span>
+<span class="go">        &lt;/Files&gt;</span>
+<span class="go">&lt;/Directory&gt;</span>
+<span class="go">&lt;Directory /home/nkrokhmal/storage/dialoguevideos&gt;</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Order allow,deny</span>
+<span class="go">        &lt;Files ~ &quot;\.(mkv|webm|mp4)$&quot;&gt;</span>
+<span class="go">                order deny,allow</span>
+<span class="go">                Allow from All</span>
+<span class="go">        &lt;/Files&gt;</span>
+<span class="go">&lt;/Directory&gt;</span>
+<span class="go">&lt;Directory /home/nkrokhmal/storage/screenshots&gt;</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Order allow,deny</span>
+<span class="go">        &lt;Files ~ &quot;\.(jpg|png)$&quot;&gt;</span>
+<span class="go">                order deny,allow</span>
+<span class="go">                Allow from All</span>
+<span class="go">        &lt;/Files&gt;</span>
+<span class="go">&lt;/Directory&gt;</span>
+<span class="go">&lt;Directory /home/nkrokhmal/storage/media&gt;</span>
+<span class="go">        allow from all</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Order allow,deny</span>
+<span class="go">&lt;/Directory&gt;</span>
+<span class="go">&lt;/VirtualHost&gt;</span>
 </pre></div>
 </div>
 <p>А файле <cite>/etc/apache2/apach2.conf</cite> добавляем в самое начало</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Directory</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">nkrokhmal</span><span class="o">/</span><span class="n">storage</span><span class="o">&gt;</span>
-        <span class="n">Options</span> <span class="n">Indexes</span> <span class="n">FollowSymLinks</span>
-        <span class="n">AllowOverride</span> <span class="kc">None</span>
-        <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
-<span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;Directory /home/nkrokhmal/storage&gt;</span>
+<span class="go">        Options Indexes FollowSymLinks</span>
+<span class="go">        AllowOverride None</span>
+<span class="go">        Require all granted</span>
+<span class="go">&lt;/Directory&gt;</span>
 </pre></div>
 </div>
 <p>И выполняем в командной строке команды</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo a2ensite ftpserver.conf
-$ sudo a2dissite 000-default.conf
-$ sudo apache2ctl configtest
-$ sudo systemctl reload apache2
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo a2ensite ftpserver.conf
+<span class="gp">$</span> sudo a2dissite <span class="m">000</span>-default.conf
+<span class="gp">$</span> sudo apache2ctl configtest
+<span class="gp">$</span> sudo systemctl reload apache2
 </pre></div>
 </div>
 <p>При этом мы активируем наш сайт, дизейблим старый дефолтный сайт, проверяем конфиг, и перезагружаем сервис apache2.</p>
@@ -247,20 +259,20 @@ $ sudo systemctl reload apache2
 <div class="section" id="apache2-certificates">
 <h2>Apache2 certificates<a class="headerlink" href="#apache2-certificates" title="Permalink to this headline">¶</a></h2>
 <p>Сначала добавляем репозиторий</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:certbot/certbot
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo add-apt-repository ppa:certbot/certbot
 </pre></div>
 </div>
 <p>Устанавливаем пакет Certbot для Apache с помощью <code class="docutils literal notranslate"><span class="pre">apt</span></code>:</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install python-certbot-apache
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt install python-certbot-apache
 </pre></div>
 </div>
 <p>Получаем SSL сертификат с помощью команды</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo certbot --apache -d example.com -d {your host}
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo certbot --apache -d example.com -d <span class="o">{</span>your host<span class="o">}</span>
 </pre></div>
 </div>
 <p>где надо будет заполнить немного информации и сертификаты будут созданы
 Сертификаты действительны только 90 дней, поэтом для обновления можно использовать</p>
-<div class="code console highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">certbot</span> <span class="n">renew</span> <span class="o">--</span><span class="n">dry</span><span class="o">-</span><span class="n">run</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo certbot renew --dry-run</span>
 </pre></div>
 </div>
 </div>
